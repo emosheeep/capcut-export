@@ -5,9 +5,6 @@ import updateNotifier from 'update-notifier';
 import nodeCleanup from 'node-cleanup';
 import { description, version, name } from '../package.json';
 
-const ensureWorkingDirectoryClean = () =>
-  import('@/utils/git').then((v) => v.ensureWorkingDirectoryClean());
-
 const startAt = Date.now();
 nodeCleanup((exitCode) =>
   console.log(
@@ -17,8 +14,7 @@ nodeCleanup((exitCode) =>
   ),
 );
 
-// Command setup
-const program = createCommand('your-command-name');
+const program = createCommand('ccexp');
 
 program
   .version(version)
@@ -30,19 +26,15 @@ program
     }),
   );
 
-/**
- * Command register
- * @see https://github.com/tj/commander.js
- */
 program
-  .command('test')
-  .description('Test command.')
-  .option('--verbose', 'To be verbose.')
-  // Maybe you want to check something, try to use hooks.
-  .hook('preAction', () => ensureWorkingDirectoryClean())
-  // Use dynamic import to speed up the startup process.
-  .action((options) =>
-    import('./commands/test').then((v) => v.default(options)),
+  .argument(
+    '[file]',
+    'CapCut/Jianying draft info file.',
+    '/Users/emosheep/Movies/JianyingPro/User Data/Projects/com.lveditor.draft/麦理浩径破边州/draft_info.json',
+  )
+  .option('--offset [number]', '')
+  .action((file, options) =>
+    import('./export').then((v) => v.default(file, options)),
   );
 
 program.parse();

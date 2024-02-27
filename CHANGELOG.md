@@ -1,2 +1,2 @@
-# cli-template
+# capcut-export
 
