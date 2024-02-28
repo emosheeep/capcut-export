@@ -2,17 +2,8 @@
 import 'zx/globals';
 import { createCommand } from 'commander';
 import updateNotifier from 'update-notifier';
-import nodeCleanup from 'node-cleanup';
 import { description, version, name } from '../package.json';
-
-const startAt = Date.now();
-nodeCleanup((exitCode) =>
-  console.log(
-    exitCode
-      ? `${chalk.red.bold('error')} Command failed with exit code ${exitCode}.`
-      : `✨ Done in ${((Date.now() - startAt) / 1000).toFixed(2)}s.`,
-  ),
-);
+import { exportVideos } from './export';
 
 const program = createCommand('ccexp');
 
@@ -24,17 +15,26 @@ program
     updateNotifier({ pkg: { name, version } }).notify({
       isGlobal: true,
     }),
-  );
-
-program
-  .argument(
-    '[file]',
-    'CapCut/Jianying draft info file.',
-    '/Users/emosheep/Movies/JianyingPro/User Data/Projects/com.lveditor.draft/麦理浩径破边州/draft_info.json',
   )
-  .option('--offset [number]', '')
-  .action((file, options) =>
-    import('./export').then((v) => v.default(file, options)),
+  .argument('<file>', 'CapCut/Jianying draft info json file.')
+  .argument('[output]', 'The output directory, default is cwd.')
+  .option(
+    '-p,--concurrent <number>',
+    `The number of tasks processed in parallel, the default is number of CPU.`,
+    `${os.cpus().length}`,
+  )
+  .option(
+    '--offset <number>',
+    "Expand the video clips' time range to both sides for about specified seconds, default is 2s.",
+    '2',
+  )
+  .option('--verbose', 'To be verbose.', false)
+  .action((file, output, options) =>
+    exportVideos(file, output, {
+      ...options,
+      concurrent: +options.concurrent,
+      offset: +options.offset,
+    }),
   );
 
 program.parse();
