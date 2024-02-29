@@ -2,11 +2,7 @@
 name: Release Package
 
 on:
-  pull_request:
-    types:
-      - closed
-    branches: # target branch
-      - master
+  workflow_dispatch:
 
 permissions:
   pull-requests: write
@@ -14,7 +10,6 @@ permissions:
 
 jobs:
   release-package:
-    if: github.event.pull_request.merged
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -27,7 +22,7 @@ jobs:
           run_install: true
 
       # consume changesets and create pr if it exists, otherwise publish package
-      - name: Create Release Pull Request or Publish to npm
+      - name: Publish to npm
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
