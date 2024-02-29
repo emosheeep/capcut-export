@@ -4,7 +4,9 @@
 ![weekly downloads](https://img.shields.io/npm/dw/capcut-export)
 ![license](https://img.shields.io/npm/l/capcut-export)
 
-This project is based on [ffmpeg](https://ffmpeg.org/), which is a very well-known low-level tool for cross-platform video processing. **Please manually install it and make `ffmpeg` in your `PATH` first**.
+This project is based on [ffmpeg](https://ffmpeg.org/), which is a very well-known low-level tool for cross-platform video processing. **Please manually install it and add `ffmpeg` to your `PATH` first**.
+
+> Tips: It's convenient to use `brew install ffmpeg` to get ffmpeg installed on MacOS.
 
 Here's the running example:
 
