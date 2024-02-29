@@ -1,9 +1,9 @@
 {
   "name": "capcut-export",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "Export video clips from CapCut editor tracks, helps archive materials.",
-  "author": "秦旭洋 <qinxuyang@bytedance.com>",
+  "author": "秦旭洋 <emosheep@qq.com>",
   "license": "MIT",
   "bin": {
     "ccexp": "./dist/index.js"
@@ -11,6 +11,19 @@
   "files": [
     "dist",
     "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/emosheeep/capcut-export"
+  },
+  "keywords": [
+    "capcut",
+    "jianying",
+    "ffmpeg",
+    "archive",
+    "video-export",
+    "wrapper",
+    "cli"
   ],
   "scripts": {
     "prepare": "husky",
@@ -30,10 +43,10 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
-    "@commitlint/cli": "^19.0.0",
-    "@commitlint/config-conventional": "^19.0.0",
+    "@commitlint/cli": "^19.0.3",
+    "@commitlint/config-conventional": "^19.0.3",
     "@types/fluent-ffmpeg": "^2.1.24",
-    "@types/node": "^20.11.20",
+    "@types/node": "^20.11.24",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^7.1.0",
     "eslint": "^8.57.0",

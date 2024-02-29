@@ -92,7 +92,7 @@ It means *export a 3s' video clip to output.mp4 from 1s of input.mp4*, and overw
 
 Sometimes when we finished video edit, there’ll be many clips in your editor track, and *they usually comes from a single video*. Anyway, we have a lot of video clips to export.
 
-**Assume that you want to achieve the materials**, how will you do? Just export one by one? 
+**Assume that you want to archive the materials**, how will you do? Just export one by one? 
 
 Actually most of editors don’t provide this functionality such as Jianying/CapCut, even if they do, **the quality of the video will suffer after they re-encoded it**.
 
