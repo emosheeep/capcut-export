@@ -25,7 +25,7 @@ program
   )
   .option(
     '--offset <number>',
-    "Expand the video clips' time range to both sides for about specified seconds, default is 2s.",
+    "Expand the video clips' time range to both sides for about specific seconds, default is 2s.",
     '2',
   )
   .option('--verbose', 'To be verbose.', false)

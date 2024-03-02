@@ -37,7 +37,7 @@ Arguments:
 Options:
   -V, --version             output the version number
   -p,--concurrent <number>  The number of tasks processed in parallel, the default is number of CPU.
-  --offset <number>         Expand the video clips' time range to both sides for about specified seconds, default is 2s.
+  --offset <number>         Expand the video clips' time range to both sides for about specific seconds, default is 2s.
   --verbose                 To be verbose. (default: false)
   -h, --help                display help for command
 ```
@@ -75,7 +75,7 @@ C:\Users\user\AppData\Local\CapCut\User Data\Projects\com.lveditor.draft\
 
 First, the tool will extract **the start time**, **the duration** of the clips, and **the video path** from the draft info file.
 
-Then it use `ffmpeg` to export specified clips, the command is like:
+Then it use `ffmpeg` to export specific clips, the command is like:
 
 ```shell
 ffmpeg -ss 1 -t 3 -i /path/to/input.mp4 -c copy /path/to/output.mp4 -y
