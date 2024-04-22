@@ -1,5 +1,7 @@
 # CapCut/Jianying Video Clips Export
 
+> **2024-04-15** Lately I find that `CapCut/Jianying Pro` starts to encrypt the draft file in the latest release version to prevent from being used illegally. This project is also affected and will enter  the end of life unfortunately 🙁.
+
 [![npm version](https://img.shields.io/npm/v/capcut-export)](https://npmjs.com/package/capcut-export)
 ![weekly downloads](https://img.shields.io/npm/dw/capcut-export)
 ![license](https://img.shields.io/npm/l/capcut-export)
