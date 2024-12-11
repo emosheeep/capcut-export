@@ -1,6 +1,7 @@
+import type { DraftInfo, TimeRange } from './types';
+import process from 'node:process';
 import ora from 'ora';
 import pLimit from 'p-limit';
-import { DraftInfo, TimeRange } from './types';
 
 interface Options {
   verbose: boolean;
@@ -9,7 +10,7 @@ interface Options {
 }
 
 /** transform timestamp to second */
-const toSeconds = (num: number) => parseFloat((num / 1000000).toFixed(2));
+const toSeconds = (num: number) => Number.parseFloat((num / 1000000).toFixed(2));
 
 function handleDraftInfo(file: string) {
   const draftInfo = fs.readJsonSync(file) as DraftInfo;
@@ -38,12 +39,14 @@ export async function exportVideos(
   const { offset = 2, concurrent = os.cpus().length, verbose } = options;
 
   $.verbose = verbose;
+  $.quiet = !verbose;
+
   const startAt = Date.now();
   const concurrency = pLimit(concurrent);
   const outputDir = path.isAbsolute(output) ? output : path.resolve(output);
   fs.ensureDir(outputDir);
 
-  const { exitCode } = await $`which ffmpeg`;
+  const { exitCode } = await $`which ffmpeg`.nothrow();
   if (exitCode) {
     return console.log(
       `fatal: You should manually install ${chalk.bold('ffmpeg')} first, see https://ffmpeg.org/download.html`,
@@ -100,9 +103,11 @@ export async function exportVideos(
   const successCount = result.reduce((result, item) => {
     if (item.status === 'fulfilled') {
       result++;
-    } else if (item.reason instanceof Error) {
+    }
+    else if (item.reason instanceof Error) {
       console.log(`\n${chalk.red.bold('error')} ${item.reason.message}`);
-    } else {
+    }
+    else {
       console.log(item.reason);
     }
     return result;

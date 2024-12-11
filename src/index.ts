@@ -2,7 +2,7 @@
 import 'zx/globals';
 import { createCommand } from 'commander';
 import updateNotifier from 'update-notifier';
-import { description, version, name } from '../package.json';
+import { description, name, version } from '../package.json';
 import { exportVideos } from './export';
 
 const program = createCommand('ccexp');
@@ -14,8 +14,7 @@ program
   .hook('preAction', () =>
     updateNotifier({ pkg: { name, version } }).notify({
       isGlobal: true,
-    }),
-  )
+    }))
   .argument('<file>', 'CapCut/Jianying draft info json file.')
   .argument('[output]', 'The output directory, default is cwd.')
   .option(
@@ -25,7 +24,7 @@ program
   )
   .option(
     '--offset <number>',
-    "Expand the video clips' time range to both sides for about specific seconds, default is 2s.",
+    'Expand the video clips\' time range to both sides for about specific seconds, default is 2s.',
     '2',
   )
   .option('--verbose', 'To be verbose.', false)
